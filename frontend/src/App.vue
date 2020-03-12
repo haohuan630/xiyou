@@ -32,6 +32,13 @@ body,
     }
   }
 
+  // 内容宽度限制
+  .content_h {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   // 组件样式
   .cpt-s {
     .el-row {

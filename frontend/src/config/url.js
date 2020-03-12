@@ -1,9 +1,9 @@
 let baseUrl_config = {
-  development: "http://192.168.11.231",
-  production: "http://192.168.11.97",
+  development: "http://127.0.0.1",
+  oduction: "http://192.168.11.97",
 }
 let port = {
-  development: 19999,
+  development: 8000,
   production: 8089,
 }
 let needPort = {

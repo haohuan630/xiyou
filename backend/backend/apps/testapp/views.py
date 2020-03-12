@@ -12,4 +12,4 @@ class plus_test(APIView):
         count = int(request.POST.get('count', 0))
         count += 1
 
-        return JsonResponse({'msg': 'OK', 'count': count})
+        return JsonResponse({'msg': 'OK', 'count': count, 'ret': 1})

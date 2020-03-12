@@ -134,9 +134,9 @@ STATIC_URL = '/static/'
 # CORS 跨域请求的设置
 # 白名单
 CORS_ORIGIN_WHITELIST = (
-    '127.0.0.1:8080',
-    'localhost:8080',
-    '192.168.11.231:19999',
+    'http://127.0.0.1:8080',
+    'http://localhost:8080',
+    'http://192.168.43.174:19050',
 )
 
 
