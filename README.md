@@ -12,3 +12,8 @@
      pip install -r request.txt;
 
      ```
+ - 数据库迁移
+    ```python
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
