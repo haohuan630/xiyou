@@ -1,3 +1,20 @@
 from django.db import models
 
 # Create your models here.
+
+
+class Area(models.Model):
+    """
+    学院、专业、方向
+    """
+    name = models.CharField(max_length=20, verbose_name='名称')
+    # 外键关联属性
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, related_name='subs', null=True, blank=True, verbose_name='上级行政区划')
+
+    class Meta:
+        db_table = 'tb_areas'
+        verbose_name = '行政区划'
+        verbose_name_plural = '行政区划'
+
+    def __str__(self):
+        return self.name

@@ -83,12 +83,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'HOST': '127.0.0.1',  # 数据库主机
-        # 'PORT': 3306,  # 数据库端口
-        # 'USER': '',  # 数据库用户名
-        # 'PASSWORD': '',  # 数据库用户密码
-        # 'NAME': ''  # 数据库名字
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '127.0.0.1',  # 数据库主机
+        'PORT': 3306,  # 数据库端口
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': 'haohuan',  # 数据库用户密码
+        'NAME': 'xiyou'  # 数据库名字
     }
 }
 

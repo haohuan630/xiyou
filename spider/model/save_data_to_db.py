@@ -50,6 +50,30 @@ def save_fields_and_person_code_to_db(item):
             connect.commit()
 
 
+def save_areas_to_db(item):
+    """人员信息"""
+    with DB() as cs_and_con:
+        cursor = cs_and_con[0]
+        connect = cs_and_con[1]
+
+        # 执行数据操作
+        # 插入操作
+        sql_insert = "insert into tb_areas(id, name, parent_id) " \
+                     "values(%s, %s, %s)"
+        value_insert = (
+            item['code'], item['name'], item['p_code'])
+        try:
+            cursor.execute(sql_insert, value_insert)
+            add_con = "id为{}的数据存储中...".format(item['code'])
+            print(add_con)
+            connect.commit()
+        except Exception as e:
+            print(e)
+            connect.rollback()
+        else:
+            connect.commit()
+
+
 def save_fields_to_db(item):
     """人员信息"""
     with DB() as cs_and_con:
@@ -214,15 +238,13 @@ def save_person_to_db(item):
         # 有重复就更新， 没有重复就保存
         if repetition:
             # 更新
-            print("重复")
-            sql_update = "update t_person_info set code=%s, views=%s, name=%s, content=%s," \
-                         " brief_intro=%s, email=%s where code=%s"
+            print("重复", repetition)
+            sql_update = "update t_person_info set url=%s where code=%s"
             value_update = (
-                item['code'], item['views'], item['name'], item['content'], item['brief_intro'], item['email'],
-                repetition[1])
+                item['url'], repetition[5])
             try:
                 cursor.execute(sql_update, value_update)
-                update_con = "id为{}的数据已存在, 更新中...".format(repetition[1])
+                update_con = "id为{}的数据已存在, 更新中...".format(repetition[5])
                 print(update_con)
                 connect.commit()
             except Exception as e:
@@ -232,12 +254,12 @@ def save_person_to_db(item):
         else:
             # 执行数据操作
             # 插入操作
-            sql_insert = "insert into t_person_info(code, views, name, content, brief_intro, email) " \
-                         "values(%s, %s, %s, %s, %s, %s)"
-            value_insert = (
-                item['code'], item['views'], item['name'], item['content'], item['brief_intro'], item["email"])
+            # sql_insert = "insert into t_person_info(code, views, name, content, brief_intro, email) " \
+            #              "values(%s, %s, %s, %s, %s, %s)"
+            # value_insert = (
+            #     item['code'], item['views'], item['name'], item['content'], item['brief_intro'], item["email"])
             try:
-                cursor.execute(sql_insert, value_insert)
+                # cursor.execute(sql_insert, value_insert)
                 add_con = "id为{}的数据存储中...".format(item['code'])
                 print(add_con)
                 connect.commit()

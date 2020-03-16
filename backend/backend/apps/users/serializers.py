@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from areas.models import Area
+from users.models import Area
 
 
 class AreaSerializer(serializers.ModelSerializer):

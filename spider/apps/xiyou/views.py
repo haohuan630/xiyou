@@ -15,7 +15,7 @@ import requests
 
 from apps.xiyou import config
 from model.save_data_to_db import save_person_to_db, find_code_for_name, save_college_to_db, save_major_to_db, \
-    save_fields_to_db, save_fields_and_person_code_to_db
+    save_fields_to_db, save_fields_and_person_code_to_db, save_areas_to_db
 
 path_add = os.path.dirname(os.path.realpath(__file__))
 
@@ -50,22 +50,26 @@ def data_class(data):
     if data[-2:] == "学院":
         """学院数据"""
         college_dict["name"] = data[3:]
-        college_dict["code"] = data[:3] + "000"
+        college_dict["code"] = "1111" + data[:3]
+        college_dict["p_code"] = None
 
         save_college_to_db(college_dict)
+        # save_areas_to_db(college_dict)
         # pprint(college_dict)
 
     elif is_number(data[:6]):
         """专业数据"""
-        if data[:6] == "085400" and college_dict["code"] == "001000":
-            m_code = "185400"
+        if data[:6] == "085400" and college_dict["code"] == "1111001":
+            m_code = "2185400"
         else:
-            m_code = data[:6]
+            m_code = "2" + data[:6]
 
         major_dict["name"] = data
         major_dict["code"] = m_code
         major_dict["college_code"] = college_dict["code"]
+        # major_dict["p_code"] = college_dict["code"]
 
+        # save_areas_to_db(major_dict)
         save_major_to_db(major_dict)
         # pprint(major_dict)
     else:
@@ -107,9 +111,11 @@ def data_class(data):
 
                     # 数据格式化
                     fields_dict["name"] = field_name
-                    fields_dict["code"] = major_dict["code"][:4] + field_name[:2]
+                    fields_dict["code"] = "3" + major_dict["code"][:4] + field_name[:2]
                     fields_dict["major_code"] = major_dict["code"]
+                    # fields_dict["p_code"] = major_dict["code"]
 
+                    # save_areas_to_db(fields_dict)
                     save_fields_to_db(fields_dict)
 
                     # print(fields_dict)
@@ -130,9 +136,11 @@ def data_class(data):
                 # 为了编码不重复
                 is_00 = "01" if field[:2] == "00" else field[:2]
 
-                fields_dict["code"] = major_dict["code"][:4] + is_00
+                fields_dict["code"] = "3" + major_dict["code"][:4] + is_00
                 fields_dict["major_code"] = major_dict["code"]
+                # fields_dict["p_code"] = major_dict["code"]
 
+                # save_areas_to_db(fields_dict)
                 save_fields_to_db(fields_dict)
 
                 # print(fields_dict)
@@ -239,6 +247,7 @@ def get_person_info(data_list):
                     person_dict["content"] = person_con
                     person_dict["brief_intro"] = p_brief_intro
                     person_dict["email"] = p_email
+                    person_dict["url"] = item
 
                     # print(p_name, p_code, p_views, p_email)
                     # print(person_dict)
@@ -266,18 +275,18 @@ def get_HTML():
     # con_list = info_etr.xpath('//*[@id="vsb_content"]/div/table/tbody//p/span[1]/span[1]/a[1]/@href')
 
     # 院、专业、方向
-    for i in range(2, 100):
-        xpath_ = 'string(//*[@id="vsb_content"]/div/table/tbody/tr[' + str(i) + '])'
-        con_item = info_etr.xpath(xpath_)
-        con_item_str = str(con_item).replace('\r\n', '').strip()
-
-        print("-------------------------", con_item_str)
-        if con_item_str:
-            data_class(con_item_str)
+    # for i in range(2, 100):
+    #     xpath_ = 'string(//*[@id="vsb_content"]/div/table/tbody/tr[' + str(i) + '])'
+    #     con_item = info_etr.xpath(xpath_)
+    #     con_item_str = str(con_item).replace('\r\n', '').strip()
+    #
+    #     print("-------------------------", con_item_str)
+    #     if con_item_str:
+    #         data_class(con_item_str)
 
     # 人员信息详情
-    # person_url_list = info_etr.xpath(' //*[@id="vsb_content"]/div/table/tbody//a/@href')
-    # get_person_info(person_url_list)
+    person_url_list = info_etr.xpath(' //*[@id="vsb_content"]/div/table/tbody//a/@href')
+    get_person_info(person_url_list)
 
 
 def run():
