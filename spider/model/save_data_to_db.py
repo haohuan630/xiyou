@@ -76,6 +76,7 @@ def save_areas_to_db(item):
 
 def save_fields_to_db(item):
     """人员信息"""
+    print(item)
     with DB() as cs_and_con:
         cursor = cs_and_con[0]
         connect = cs_and_con[1]
@@ -91,13 +92,13 @@ def save_fields_to_db(item):
         # 有重复就更新， 没有重复就保存
         if repetition:
             # 更新
-            print("重复")
+            print("重复fields", repetition)
             sql_update = "update t_fields set code=%s, name=%s, major_code=%s where code=%s"
             value_update = (
-                item['code'], item['name'], item["major_code"], repetition[1])
+                item['code'], item['name'], item["major_code"], repetition[2])
             try:
                 cursor.execute(sql_update, value_update)
-                update_con = "id为{}的数据已存在, 更新中...".format(repetition[1])
+                update_con = "id为{}的数据已存在, 更新中...".format(repetition[2])
                 print(update_con)
                 connect.commit()
             except Exception as e:
