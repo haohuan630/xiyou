@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
 # from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
-from users.models import Area
-from users.serializers import AreaSerializer, SubAreaSerializer
+from users.models import Area, PersonInfo
+from users.serializers import AreaSerializer, SubAreaSerializer, PersonSerializer
 
 
 # Create your views here.
@@ -70,3 +70,19 @@ class SubAreasView(RetrieveAPIView):
     #     # 2. 将地区序列化并返回(注: 将地址关联的下级地区进行嵌套序列化)
     #     serializer = self.get_serializer(area)
     #     return Response(serializer.data)
+
+
+class PersonInfoView(GenericAPIView):
+    """人员信息查询"""
+    serializer_class = PersonSerializer
+
+    def get(self, request, pk):
+        person_obj = Area.objects.get(id=pk)
+        if person_obj:
+            # print(person_obj.personinfo_set.values())
+            person_data = person_obj.personinfo_set.values()
+            # serializer = self.get_serializer(person_data)
+        else:
+            person_data = {}
+
+        return Response(person_data)
