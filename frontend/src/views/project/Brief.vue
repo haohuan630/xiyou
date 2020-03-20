@@ -1,10 +1,10 @@
 <template>
-  <div class="Validate">Validate</div>
+  <div class="Brief">Brief</div>
 </template>
 
 <script>
 export default {
-  name: "Validate",
+  name: "Brief",
   components: {},
   data() {
     return {};

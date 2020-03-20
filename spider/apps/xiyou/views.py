@@ -234,8 +234,10 @@ def get_person_info(data_list):
                     p_con = p_info_etr.xpath('//*[@id="vsb_content"]/div//text()')
                     p_name = p_info_etr.xpath('/html/body//div/h1/text()')[0]
 
-                    p_views = p_info_etr.xpath('/html/body/div[4]/div[2]/div[2]/div[2]/form/div/div[1]/script/text()')
-                    p_views = p_views[-1].split(",")[-1].split(")")[0] if p_views else ""
+                    p_views = p_info_etr.xpath('//*[@id="dynclicks_wbnews_3986_363"]/text()')
+                    # p_views = p_views[-1].split(",")[-1].split(")")[0] if p_views else ""
+
+                    print(p_views)
 
                     # 组装数据和清洗
                     person_con = clean_con(p_con)
@@ -263,7 +265,7 @@ def get_person_info(data_list):
                     # print(p_name, p_code, p_views, p_email)
                     # print(person_dict)
 
-                    save_person_to_db(person_dict)
+                    # save_person_to_db(person_dict)
 
                     break
             except:
@@ -286,18 +288,18 @@ def get_HTML():
     # con_list = info_etr.xpath('//*[@id="vsb_content"]/div/table/tbody//p/span[1]/span[1]/a[1]/@href')
 
     # 院、专业、方向
-    for i in range(2, 100):
-        xpath_ = 'string(//*[@id="vsb_content"]/div/table/tbody/tr[' + str(i) + '])'
-        con_item = info_etr.xpath(xpath_)
-        con_item_str = str(con_item).replace('\r\n', '').strip()
-
-        print("-------------------------", con_item_str)
-        if con_item_str:
-            data_class(con_item_str)
+    # for i in range(2, 100):
+    #     xpath_ = 'string(//*[@id="vsb_content"]/div/table/tbody/tr[' + str(i) + '])'
+    #     con_item = info_etr.xpath(xpath_)
+    #     con_item_str = str(con_item).replace('\r\n', '').strip()
+    #
+    #     print("-------------------------", con_item_str)
+    #     if con_item_str:
+    #         data_class(con_item_str)
 
     # 人员信息详情
-    # person_url_list = info_etr.xpath(' //*[@id="vsb_content"]/div/table/tbody//a/@href')
-    # get_person_info(person_url_list)
+    person_url_list = info_etr.xpath(' //*[@id="vsb_content"]/div/table/tbody//a/@href')
+    get_person_info(person_url_list)
 
 
 def run():

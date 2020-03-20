@@ -51,5 +51,15 @@ body,
       background: #f2f2f2;
     }
   }
+
+  // 表格样式
+  .common-table-header {
+    background-color: #fafafa;
+    color: #333333;
+    text-align: center;
+  }
+  .common-table-cell {
+    text-align: center;
+  }
 }
 </style>

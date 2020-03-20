@@ -9,11 +9,11 @@ const Index = () => import('@/views/Index.vue')
 const TopNav = () => import('@/components/TopNav')
 const LeftNav = () => import('@/components/LeftNav')
 const MySettings = () => import('@/views/setting/MySetting.vue')
-const Plan = () => import('@/views/setting/Plan.vue')
+const Info = () => import('@/views/setting/Info.vue')
 const Setting = () => import('@/views/setting/Setting.vue')
 
-const EnterpriseList = () => import('@/views/enterprise/EnterpriseList.vue')
-const Validate = () => import('@/views/enterprise/Validate.vue')
+const Brief = () => import('@/views/project/Brief.vue')
+// const Validate = () => import('@/views/project/Validate.vue')
 
 const routes = [{
     path: '/login',
@@ -54,41 +54,29 @@ const routes = [{
     ]
   },
   {
-    path: '/enterprise',
-    name: 'enterprise',
+    path: '/project',
+    name: 'project',
     component: Home,
-    redirect: '/enterprise/list',
+    redirect: '/project/list',
     meta: {
       icon: 'el-icon-menu',
-      title: "企业管理",
+      title: "项目管理",
       isTopMenu: true
     },
     children: [{
-      path: '/enterprise/list',
-      name: 'EnterpriseList',
+      path: '/project/list',
+      name: 'Brief',
       components: {
-        default: EnterpriseList,
+        default: Brief,
         top: TopNav,
         aside: LeftNav
       },
       meta: {
         icon: 'el-icon-menu',
-        title: "企业信息"
+        title: "项目简介"
       },
     }, {
-      path: '/enterprise/validate',
-      name: 'validate',
-      components: {
-        default: Validate,
-        top: TopNav,
-        aside: LeftNav
-      },
-      meta: {
-        icon: 'el-icon-menu',
-        title: "企业认证"
-      },
-    }, {
-      path: '/enterprise/mySet',
+      path: '/project/myset',
       name: 'mySet',
       components: {
         default: MySettings,
@@ -101,13 +89,13 @@ const routes = [{
         title: "我的设置"
       },
       children: [{
-        path: 'plan',
-        component: Plan,
-        name: 'plan',
+        path: 'info',
+        component: Info,
+        name: 'info',
         meta: {
           icon: 'el-icon-menu',
           icon: 'el-icon-menu',
-          title: "我的计划"
+          title: "个人信息"
         }
       }, {
         path: 'setting',
