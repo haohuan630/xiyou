@@ -1,18 +1,18 @@
 let baseUrl_config = {
   development: "http://127.0.0.1",
-  oduction: "http://192.168.11.97",
+  production: "http://150.158.113.76",
 }
 let port = {
   development: 8000,
-  production: 8089,
+  production: 8000,
 }
 let needPort = {
   development: true,
-  production: false
+  production: true
 }
 let path = {
-  development: '',
-  production: '/api/cerebral-infarction',
+  development: '/api',
+  production: '/api',
 }
 
 function baseUrlsplitJoint() {

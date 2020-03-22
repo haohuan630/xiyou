@@ -24,6 +24,14 @@ body,
   .el-header {
     padding: 0px;
   }
+  .el-footer {
+    padding: 0;
+  }
+
+  // 内容部分的样式
+  .content {
+    min-height: 800px;
+  }
 
   // 公共样式
   .common-s {
@@ -35,6 +43,7 @@ body,
   // 内容宽度限制
   .content_h {
     max-width: 1200px;
+    // background: red;
     margin-left: auto;
     margin-right: auto;
   }
@@ -58,8 +67,13 @@ body,
     color: #333333;
     text-align: center;
   }
-  .common-table-cell {
-    text-align: center;
+  // .common-table-cell {
+  //   text-align: center;
+  // }
+
+  // 分割线
+  .el-divider--horizontal {
+    margin: 12px 0;
   }
 }
 </style>

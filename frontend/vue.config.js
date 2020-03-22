@@ -13,6 +13,8 @@ module.exports = {
     // 代理
     // proxy: 'http://localhost:2222'
   },
+    // 打包时不生成 .map文件、
+  // produceSourceMap: false,
   outputDir: 'dist/' + process.env.NODE_ENV,
 
   chainWebpack: config => {
@@ -20,7 +22,4 @@ module.exports = {
       .set('@', resolve('src'))
       .set('_c', resolve('src/components'))
   },
-
-  // 打包时不生成 .map文件、
-  // produceSourceMap: false
 }

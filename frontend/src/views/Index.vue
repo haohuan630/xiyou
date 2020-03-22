@@ -136,7 +136,7 @@ export default {
       // 初始化获取第一级数据
       api.getPerentArea().then(
         success => {
-          console.log("123", success.data);
+          // console.log("123", success.data);
           this.areas_list1 = success.data;
           if (success.data) {
             this.id1 = success.data[2].name;
@@ -187,13 +187,13 @@ export default {
     getInfo(e){
       api.getPersonInfo({"id": e}).then(success => {
         this.info_data = success.data
-        console.log("1111111111222222222222222", success.data)
+        // console.log("1111111111222222222222222", success.data)
       })
     },
 
     // 查看人员详情
     handleClick(e) {
-      console.log("eeeeeeeeeeeeeeeeee", e.url)
+      // console.log("eeeeeeeeeeeeeeeeee", e.url)
       // window.localtion.href = e.url
       window.open(e.url, "_blank");
     },

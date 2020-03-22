@@ -8,6 +8,9 @@ const Index = () => import('@/views/Index.vue')
 
 const TopNav = () => import('@/components/TopNav')
 const LeftNav = () => import('@/components/LeftNav')
+const FootNav = () => import('@/components/FootNav')
+
+
 const MySettings = () => import('@/views/setting/MySetting.vue')
 const Info = () => import('@/views/setting/Info.vue')
 const Setting = () => import('@/views/setting/Setting.vue')
@@ -28,6 +31,11 @@ const routes = [{
     path: '*',
     component: NotFound
   },
+  // {
+  //   path: '/',
+  //   name: 'foot',
+  //   component: FootNav,
+  // },
   {
     path: '/',
     name: 'home',
@@ -44,7 +52,8 @@ const routes = [{
         components: {
           default: Index,
           top: TopNav,
-          aside: LeftNav
+          aside: LeftNav,
+          foot: FootNav,
         },
         meta: {
           title: "工作台",
