@@ -67,6 +67,10 @@ body,
     color: #333333;
     text-align: center;
   }
+  .el-tooltip__popper {
+    max-width: 50%;
+    font-size: 14px;
+  }
   // .common-table-cell {
   //   text-align: center;
   // }

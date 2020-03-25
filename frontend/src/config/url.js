@@ -1,5 +1,5 @@
 let baseUrl_config = {
-  development: "http://127.0.0.1",
+  development: "http://150.158.113.76",
   production: "http://150.158.113.76",
 }
 let port = {

@@ -88,13 +88,17 @@ export default {
           label: "邮箱",
           prop: "email"
         },
-        {
-          label: "访问量",
-          prop: "views"
-        },
+        // {
+        //   label: "浏览次数",
+        //   prop: "views"
+        // },
         {
           label: "简介",
-          prop: "brief_intro"
+          prop: "content"
+        },
+        {
+          label: "关键词",
+          prop: "main_fields"
         },
       ]
     };
